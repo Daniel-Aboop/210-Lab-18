@@ -39,15 +39,12 @@ int main(){
         }
         else if(choice==2){
             head=choice2(head,rating,comment);
-
         }
         cout<<"Enter another review? Y/N: ";
         getline(cin,yn);
         if(yn=="N"||yn=="n"){
             break;
         }
-
-
     }
     output(head);
     // free up the memory used when making the linked list
@@ -71,8 +68,8 @@ void output(Node * head){
     }
     // to find the average it would be 2, so since it loops 1 more time for nullptr i did -1 to make sure its okay for average
     cout<<"> Average: "<<avg/(count-1)<<endl;
-
 }
+
 Node* choice1(Node *head,double rating,const string& comment){
     Node* newNode = new Node{rating, comment, head};
     return newNode;
@@ -86,6 +83,7 @@ void deletelist(Node * head){
     }
     head = nullptr;
 }
+
 Node* choice2(Node *head,double rating,const string& comment){
     Node* newNode = new Node{rating,comment,nullptr};
     //if this is the first thing inside of our list it will become the new head.
