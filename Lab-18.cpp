@@ -14,6 +14,8 @@ struct Node{
 void output(Node *head);
 Node * choice1(Node *head,double rating,const string& comment);
 Node * choice2(Node *head,double rating,const string& comment);
+// This function is not apart of the assignment however I added it to free up the memory used
+void deletelist(Node * head);
 
 int main(){
     Node *head = nullptr;
@@ -35,9 +37,12 @@ int main(){
         cin.ignore();
         getline(cin,comment);
         if(choice==1){
-          head=choice1(head,rating,comment);
+            head=choice1(head,rating,comment);
         }
+        else if(choice==2){
+            head=choice2(head,rating,comment);
 
+        }
         cout<<"Enter another review? Y/N: ";
         getline(cin,yn);
         if(yn=="N"||yn=="n"){
@@ -47,6 +52,8 @@ int main(){
 
     }
     output(head);
+    // free up the memory used when making the linked list
+    deletelist(head);
     return 0;
 }
 void output(Node * head){
@@ -55,21 +62,34 @@ void output(Node * head){
         return;
     }
     int count = 1;
-    int avg=0;
+    double avg=0;
     Node * current = head;
     cout<<"Outputting all reviews:"<<endl;
     while (current) {
-        cout<<"> Review #"<<count<<": "<< current->rating<<": "<<current->comment<<endl;
+        cout<<"> Review #"<<count++<<": "<< current->rating<<": "<<current->comment<<endl;
         avg+=current->rating;
+        
         current = current->next;
     }
-    cout<<"> Average: "<<avg/count<<endl;
+    cout<<avg<<endl;
+    cout<<count<<endl;
+    // to find the average it would be 2, so since it loops 1 more time for nullptr i did -1 to make sure its okay for average
+    cout<<"> Average: "<<avg/(count-1)<<endl;
 
 }
 Node* choice1(Node *head,double rating,const string& comment){
     Node* newNode = new Node{rating, comment, head};
-    newNode->rating=rating;
-    newNode->comment=comment;
-    newNode->next=head;
     return newNode;
+}
+void deletelist(Node * head){
+  Node * current = head;
+    while (current) {
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
+}
+Node* choide2(Node *head,double rating,const string& comment){
+
 }
