@@ -19,8 +19,6 @@ void deletelist(Node * head);
 
 int main(){
     Node *head = nullptr;
-    
-
     cout<<"Which linked list method should we use?"<<endl;
     cout<<"    [1] New nodes are added at the head of the linked list"<<endl;
     cout<<"    [2] New nodes are added at the tail of the linked list"<<endl;
@@ -71,8 +69,6 @@ void output(Node * head){
         
         current = current->next;
     }
-    cout<<avg<<endl;
-    cout<<count<<endl;
     // to find the average it would be 2, so since it loops 1 more time for nullptr i did -1 to make sure its okay for average
     cout<<"> Average: "<<avg/(count-1)<<endl;
 
@@ -90,6 +86,16 @@ void deletelist(Node * head){
     }
     head = nullptr;
 }
-Node* choide2(Node *head,double rating,const string& comment){
-
+Node* choice2(Node *head,double rating,const string& comment){
+    Node* newNode = new Node{rating,comment,nullptr};
+    //if this is the first thing inside of our list it will become the new head.
+    if(head==nullptr){
+        return newNode;
+    }
+    Node* current = head;
+    while(current->next!=nullptr){
+        current=current->next;
+    }
+    current->next=newNode;
+    return head;
 }
