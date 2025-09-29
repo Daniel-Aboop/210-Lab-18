@@ -12,8 +12,8 @@ struct Node{
 };
 
 void output(Node *);
-Node* choice1(Node *);
-Node * choide2(Node *);
+Node* choice1(Node *, int rating,string comment);
+Node * choide2(Node *, int rating,string comment);
 
 int main(){
     Node *head = nullptr;
@@ -34,6 +34,12 @@ int main(){
         cout<<"Enter review comments: ";
         cin.ignore();
         getline(cin,comment);
+        if(choice==1){
+            head=choice1(head,rating,comment);
+        }
+        else if(choice==2){
+            
+        }
         cout<<"Enter another review? Y/N: ";
         getline(cin,yn);
         if(yn=="N"||yn=="n"){
@@ -55,11 +61,19 @@ void output(Node * head){
     }
     int count = 1;
     Node * current = head;
-    cout<<
+    cout<<"Outputting all reviews:"<<endl;
     while (current) {
-        cout << "[" << count++ << "] " << current-> << endl;
+        cout<<"> Review #"<<count<< current->rating<<" : "<<current->comment;
         current = current->next;
     }
     cout << endl;
+
+}
+Node* choice1(Node *head,double rating,string comment){
+    Node * newNode = new Node;
+    newNode->rating=rating;
+    newNode->comment=comment;
+    newNode->next=head;
+    return newNode;
 
 }
