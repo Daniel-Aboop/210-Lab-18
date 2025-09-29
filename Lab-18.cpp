@@ -28,13 +28,17 @@ int main(){
     while(true){
         double rating;
         string comment;
+        string yn;
         cout<<"Enter review rating 0-5: ";
         cin>>rating;
         cout<<"Enter review comments: ";
+        cin.ignore();
         getline(cin,comment);
-        cout<<endl<<comment;
-        break;
+        cout<<"Enter another review? Y/N: ";
+        getline(cin,yn);
+        if(yn=="N"||yn=="n"){
 
+        }
 
 
     }
@@ -43,4 +47,19 @@ int main(){
 
 
     return 0;
+}
+void output(Node * head){
+    if(!head){
+        cout<<"Empty list.\n";
+        return;
+    }
+    int count = 1;
+    Node * current = head;
+    cout<<
+    while (current) {
+        cout << "[" << count++ << "] " << current-> << endl;
+        current = current->next;
+    }
+    cout << endl;
+
 }
